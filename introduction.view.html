@@ -1,0 +1,41 @@
+<div class="container w-full md:w-2/3 mx-4 md:mx-auto">
+    <h1 class="text-primary mt-8 text-4xl">Introduction</h1>
+    <h2 class="text-secondary my-3 text-3xl">Vast-n3 Components</h2>
+    <div class="py-4 flex flex-wrap ">
+        <a class="text-teal-700 underline pr-4" href="{{base}}login/">login</a>
+        <a class="text-teal-700 underline pr-4" href="{{base}}register/">register</a>
+        <a class="text-teal-700 underline pr-4" href="{{base}}modal/">modal</a>
+    </div>
+    <h2 class="text-secondary my-3 text-3xl">Dependencies</h2>
+    <p class="py-4">
+        You can account for nested dependencies by creating a static function "dependencies" on the PHP-controller.
+        No need to import your dependencies or taking care of nested dependencies. There are two scenarios you want to account for:
+
+    </p>
+    <h3 class="text-secondary my-2 text-xl">Reusability</h3>
+    <p class="py-4">
+        Created a new component and used another component? Add the dependency to the composer.json of the component (using neoan3 publish).
+        This way, whenever that component is used in another project, dependencies are installed along with it.
+    </p>
+    <h3 class="text-secondary my-2 text-xl">Inheritance</h3>
+    <p class="py-4">
+        What makes vast-n3 so fast is the neoan3-core. In order to only load needed components,
+        vast-n3's functions "vueComponent" & "vueComponents" look for a function "dependencies" which should return an array of component names.
+        As an example you might want to look into the register component which requires "animation" and "modal".
+        This means that whenever a neoan3 route uses "register", the components "animation" and "modal" are automatically imported.
+    </p>
+
+    <h2 class="text-secondary my-3 text-3xl">Best practices</h2>
+    <p class="py-4">
+        vast-n3 uses neoan3's methodology for development, collaboration and versioning.
+        As such, make use of neoan3's publish logic and treat every component as it's own git repository.
+        vast-n3 comes to you as a complete installer. But just like every other neoan3 project,
+        you can add or update single components. <br>
+        <code>neoan3 add component login https://vast-n3/component-login.git</code> <br>
+        will install vast-n3's login component including its dependencies into any neoan3-project.
+        However, be aware that we have opted <span class="font-bold">not</span> to use neoan3's singleton approach.
+        This means that our components do require the vast-n3 frame as a hard-coded necessity. <br><br>
+        The recommended way to take complete control over your project is to change the
+        upstream of the component you are working on and pointing it to a fork you made.
+    </p>
+</div>
